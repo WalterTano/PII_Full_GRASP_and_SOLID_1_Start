@@ -17,12 +17,18 @@ namespace Full_GRASP_And_SOLID
 
         private static ArrayList equipmentCatalog = new ArrayList();
 
+
+        /*
+        Ya que las unidades y los precios especificados en el ejemplo no son claros, es posible que
+        los resultados resulten incorrectos o inflados.
+        */
         public static void Main(string[] args)
         {
             PopulateCatalogs();
 
             Recipe recipe = new Recipe();
             recipe.FinalProduct = GetProduct("Café con leche");
+            // 100ml? o 100g? - 120 segundos? 120 minutos? o 120 horas?
             recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
             recipe.PrintRecipe();
@@ -30,6 +36,7 @@ namespace Full_GRASP_And_SOLID
 
         private static void PopulateCatalogs()
         {
+            // Costo unitario de 100 siendo una unidad un gramo? o un paquete de x gramos? De cuantos gramos?
             AddProductToCatalog("Café", 100);
             AddProductToCatalog("Leche", 200);
             AddProductToCatalog("Café con leche", 300);

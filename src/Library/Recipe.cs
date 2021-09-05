@@ -33,6 +33,25 @@ namespace Full_GRASP_And_SOLID.Library
                 Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
                     $"usando '{step.Equipment.Description}' durante {step.Time}");
             }
+            Console.WriteLine($"Costo total de producción: ${this.GetProductionCost()}");
         }
+
+        /*
+        Aplicamos el patrón EXPERT para asignar la responsabilidad de calcular el costo total de
+        producción a la clase Recipe. Elegimos la clase Recipe porque conoce la lista de instancias
+        de la clase Step necesarias para completar la receta. Ya que conoce todas las instancias de
+        Step usadas, puede conocer los subtotales de todas y puede sumarlos para calcular el total
+        final. 
+        */
+        public double GetProductionCost(){
+            double result = 0;
+            
+            foreach(Step step in steps){
+                result += step.StepCost;
+            }
+
+            return result;
+        }
+
     }
 }
